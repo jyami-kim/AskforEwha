@@ -29,7 +29,7 @@
 	<body>
 		<div class="container">
 		    <div class="jumbotron text-center">
-		        <h1><span class="fa fa-shopping-cart"></span> 벗탁해 로그인</h1>
+		        <h1></span> 벗탁해</h1>
 				<br>
 				<% if (login_success) { %>
 					<p>로그인되어 있습니다.</p>
@@ -42,6 +42,7 @@
 			        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>로그인</a>
 			        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>회원가입</a>
 					<br>
+					<a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> 페이스북으로 로그인</a>
 				<% } %>
 				
 		    </div>

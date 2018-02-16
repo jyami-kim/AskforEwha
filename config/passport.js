@@ -1,6 +1,7 @@
 
 var local_login = require('./passport/local_login');
 var local_signup = require('./passport/local_signup');
+var facebook = require('./passport/facebook');
 
 module.exports = function (app, passport) {
 	console.log('config/passport 호출됨.');
@@ -30,6 +31,8 @@ module.exports = function (app, passport) {
 	// 인증방식 설정
 	passport.use('local-login', local_login);
 	passport.use('local-signup', local_signup);
+	passport.use('facebook', facebook(app, passport));
+
 	console.log('passport 인증방식 설정됨.');
 	
 };

@@ -27,12 +27,41 @@
 		
 		        <div class="col-sm-6">
 		            <div class="well">
-						<h3><span class="fa fa-user"></span> 로컬 프로필</h3>
-						<br>
-						<p>
-							<strong>이메일</strong>: <%= user.email %><br><br>
-							<strong>별명</strong>: <%= user.name %>
-						</p>
+		            
+		            	<% if (user.provider == undefined || user.provider == '') { %>
+			                <h3><span class="fa fa-user"></span> 로컬 프로필</h3>
+							<br>
+							<p>
+								<strong>실명</strong>: <%= user.name %><br><br>
+								<strong>이메일</strong>: <%= user.email %><br><br>
+								<strong>닉네임</strong>: <%= user.nickname %><br><br>
+								<%if(user.ewha == true) {%>
+									<strong>이화인 인증이 되었습니다.</strong>
+									
+								<%}else{%>
+									<strong>이화인 인증이 되지 않았습니다.</strong>
+									<a href ="#">인증하러가기</a>
+								<%}%>
+
+
+			                </p>
+			            <% } else if (user.provider == 'facebook') { %>
+							<h3 class="text-primary"><span class="fa fa-facebook"></span> 페이스북 프로필</h3>
+							<br>
+		                    <p>
+								<strong>실명</strong>: <%= user.name%><br><br>
+								<strong>이메일</strong>: <%= user.email %><br><br>
+								<strong>닉네임</strong>: <%= user.nickname %><br><br>
+								<%if(user.ewha == true) {%>
+									<strong>이화인 인증이 되었습니다.</strong>
+									
+								<%}else{%>
+									<strong>이화인 인증이 되지 않았습니다.</strong>
+									<a href ="#">인증하러가기</a>
+								<%}%>
+		                    </p>
+						<% } %>
+		                	
 						<br>
 		            </div>
 		        </div>

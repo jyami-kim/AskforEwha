@@ -1,23 +1,16 @@
-/**
- * 패스포트 설정 파일
- * 
- * 로컬 인증방식을 사용하는 패스포트 설정
- *
- * @date 2016-11-10
- * @author Mike
- */
+
 
 var LocalStrategy = require('passport-local').Strategy;
 
 module.exports = new LocalStrategy({
-		usernameField : 'email',
+		usernameField : 'loginid',
 		passwordField : 'password',
 		passReqToCallback : true   // 이 옵션을 설정하면 아래 콜백 함수의 첫번째 파라미터로 req 객체 전달됨
-	}, function(req, email, password, done) { 
-		console.log('passport의 local-login 호출됨 : ' + email + ', ' + password);
+	}, function(req, loginid, password, done) { 
+		console.log('passport의 local-login 호출됨 : ' + loginid + ', ' + password);
 		
 		var database = req.app.get('database');
-	    database.UserModel.findOne({ 'email' :  email }, function(err, user) {
+	    database.UserModel.findOne({ 'loginid' :  loginid }, function(err, user) {
 	    	if (err) { return done(err); }
 
 	    	// 등록된 사용자가 없는 경우

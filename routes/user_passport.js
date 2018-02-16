@@ -30,6 +30,7 @@ module.exports = function(router, passport) {
         console.log('/signup 패스 요청됨.');
         res.render('signup.ejs', {message: req.flash('signupMessage')});
     });
+
 	 
     // 프로필 화면
     router.route('/profile').get(function(req, res) {
@@ -76,6 +77,17 @@ module.exports = function(router, passport) {
         successRedirect : '/profile', 
         failureRedirect : '/signup', 
         failureFlash : true 
+    }));
+
+    // 패스포트 - 페이스북 인증 라우팅 
+    router.route('/auth/facebook').get(passport.authenticate('facebook', { 
+        scope : 'email' 
+    }));
+
+    // 패스포트 - 페이스북 인증 콜백 라우팅
+    router.route('/auth/facebook/callback').get(passport.authenticate('facebook', {
+        successRedirect : '/profile',
+        failureRedirect : '/'
     }));
 
 };
