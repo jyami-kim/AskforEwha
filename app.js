@@ -3,6 +3,7 @@
  * 
  * 기본 게시판 기능 구현
  *
+ *
  * @date 2016-11-10
  * @author Mike
  */
@@ -12,6 +13,7 @@
 var express = require('express')
   , http = require('http')
   , path = require('path');
+
 
 // Express의 미들웨어 불러오기
 var bodyParser = require('body-parser')
