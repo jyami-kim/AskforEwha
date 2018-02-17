@@ -1,13 +1,3 @@
-/**
- * 게시판 만들기
- * 
- * 기본 게시판 기능 구현
- *
- * @date 2016-11-10
- * @author Mike
- */
- 
-
 // Express 기본 모듈 불러오기
 var express = require('express')
   , http = require('http')
@@ -25,6 +15,9 @@ var expressErrorHandler = require('express-error-handler');
 // Session 미들웨어 불러오기
 var expressSession = require('express-session');
   
+//=====인증메일=====// 
+var nodemailer = require('nodemailer');
+
 
 //===== Passport 사용 =====//
 var passport = require('passport');
@@ -39,8 +32,6 @@ var database = require('./database/database');
 
 // 모듈로 분리한 라우팅 파일 불러오기
 var route_loader = require('./routes/route_loader');
-
- 
 
 
 // 익스프레스 객체 생성
@@ -85,8 +76,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
  
-
-
 //라우팅 정보를 읽어들여 라우팅 설정
 var router = express.Router();
 route_loader.init(app, router);
@@ -100,7 +89,14 @@ configPassport(app, passport);
 var userPassport = require('./routes/user_passport');
 userPassport(router, passport);
 
+//=======인증메일 nodemailer ========//
+//인증메일 설정
+var configmailer = require('./config/nodemailer');
+configmailer(app, nodemailer);
 
+//인증메일 라우팅 설정
+var routemailer = require('./routes/routemailer');
+routemailer(router, nodemailer);
 
 //===== 404 에러 페이지 처리 =====//
 var errorHandler = expressErrorHandler({
