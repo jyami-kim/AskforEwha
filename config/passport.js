@@ -1,7 +1,6 @@
 
 var local_login = require('./passport/local_login');
 var local_signup = require('./passport/local_signup');
-var facebook = require('./passport/facebook');
 
 module.exports = function (app, passport) {
 	console.log('config/passport 호출됨.');
@@ -22,7 +21,6 @@ module.exports = function (app, passport) {
         console.log('deserializeUser() 호출됨.');
         console.dir(user);
 
-
         // 사용자 정보 중 id나 email만 있는 경우 사용자 정보 조회 필요 - 여기에서는 user 객체 전체를 패스포트에서 관리
         // 두 번째 파라미터로 지정한 사용자 정보는 req.user 객체로 복원됨
         // 여기에서는 파라미터로 받은 user를 별도로 처리하지 않고 그대로 넘겨줌
@@ -32,8 +30,6 @@ module.exports = function (app, passport) {
 	// 인증방식 설정
 	passport.use('local-login', local_login);
 	passport.use('local-signup', local_signup);
-	passport.use('facebook', facebook(app, passport));
-
 	console.log('passport 인증방식 설정됨.');
 	
 };

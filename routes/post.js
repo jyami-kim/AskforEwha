@@ -1,11 +1,8 @@
 /*
  * 게시판을 위한 라우팅 함수 정의
  *
- * @date 2016-11-10
- * @author Mike
  */
 
-// html-entities module is required in showpost.ejs
 var Entities = require('html-entities').AllHtmlEntities;
 
 
@@ -14,7 +11,11 @@ var addpost = function(req, res) {
  
     var paramTitle = req.body.title || req.query.title;
     var paramContents = req.body.contents || req.query.contents;
-    var paramWriter = req.body.writer || req.query.writer;
+	var paramWriter = req.body.writer || req.query.writer;
+	var paramReward = req.body.reward || req.query.reward;
+	var paramDate = req.body.date || req.query.date;
+	var paramTime = req.body.time || req.query.time;
+	var paramKakao = req.body.kakao || req.query.kakao;
 	
     console.log('요청 파라미터 : ' + paramTitle + ', ' + paramContents + ', ' + 
                paramWriter);
@@ -45,6 +46,7 @@ var addpost = function(req, res) {
 				return;
 			}
 			
+			
 			var userObjectId = results[0]._doc._id;
 			console.log('사용자 ObjectId : ' + paramWriter +' -> ' + userObjectId);
 			
@@ -53,7 +55,11 @@ var addpost = function(req, res) {
 			var post = new database.PostModel({
 				title: paramTitle,
 				contents: paramContents,
-				writer: userObjectId
+				writer: userObjectId,
+				reward: paramReward,
+				date: paramDate,
+				time: paramTime,
+				kakao: paramKakao,
 			});
 
 			post.savePost(function(err, result) {

@@ -1,8 +1,7 @@
 /**
- * 게시판을 위한 데이터베이스 스키마를 정의하는 모듈
- *
- * @date 2016-11-10
- * @author Mike
+ * ewha 구해요 CRUD
+ * 제목, 상세설명, 사례비, 시간, 해시태그, 댓글
+ * CRUD 를 위한 데이터 스키마 정의하는 모듈
  */
 
 var utils = require('../utils/utils');
@@ -15,7 +14,13 @@ SchemaObj.createSchema = function(mongoose) {
 	var PostSchema = mongoose.Schema({
 	    title: {type: String, trim: true, 'default':''},		// 글 제목
 	    contents: {type: String, trim:true, 'default':''},						// 글 내용
-	    writer: {type: mongoose.Schema.ObjectId, ref: 'users6'},							// 글쓴 사람
+		writer: {type: mongoose.Schema.ObjectId, ref: 'users6'},							// 글쓴 사람
+		reward: {type: String, trim:true, 'default':''},   		 // 사례비
+		writer: {type: mongoose.Schema.ObjectId, ref : 'users6'},
+		date: {type: Date, trim:true, 'default':''},   		 // 마감날짜
+		time: {type: String, trim:true, 'default':''},   		 // 마감시간
+		kakao: {type: String, trim:true, 'default':''},   		 // 오픈카카오톡	
+		tags: {type:[],'default':'' }, // 해시태그
 	    comments: [{		// 댓글
 	    	contents: {type: String, trim:true, 'default': ''},					// 댓글 내용
 	    	writer: {type: mongoose.Schema.ObjectId, ref: 'users6'},

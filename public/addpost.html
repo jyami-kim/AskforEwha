@@ -74,25 +74,48 @@
 				 <div class="content">
 			       		 
 					<form class="content ui form" method="post" action="/process/addpost">
-						<h4 class="ui dividing header">글 쓰기 입력 항목</h4>
-						
 						<div class="two fields">
 				    		<div class="field">
 				      			<label>제목</label>
-								<input type="text" name="title" placeholder="제목 입력">
+								<input type="text" name="title" placeholder="제목">
 							</div>
 							<div class="field"></div>
 						</div>
-								
+
 						<div class="field">
-				    		<label>내용</label>
+				    		<label>도움내용</label>
 				    		<textarea id="contents" name="contents" rows="10" cols="80"></textarea>
-				  		</div>		
-								
+						  </div>	
+
+						<div class="two fields">
+				    		<div class="field">
+				      			<label>희망 사례</label>
+								<input type="text" name="reward" placeholder="감사의 마음을 전해요!">
+							</div>
+							<div class="field"></div>
+						</div>
+
+						<div class="two fields">
+				    		<div class="field">
+				      			<label>마감 시간</label>
+								<input type="date" name="date">
+								<input type="time" name="time">
+							</div>
+							<div class="field"></div>
+						</div>
+
+						<div class="two fields">
+				    		<div class="field">
+				      			<label>오픈카톡 주소</label>
+								<input type="text" name="kakao" placeholder="정확한 주소를 입력해 주세요!">
+							</div>
+							<div class="field"></div>
+						</div>
+
 						<div class="two fields">
 				    		<div class="field">
 				      			<label>작성자</label>
-								<input type="text" name="writer" placeholder="작성자아이디 입력">
+								<input type="text" name="writer" placeholder="작성자 아이디 입력">
 							</div>
 							<div class="field"></div>
 						</div>
