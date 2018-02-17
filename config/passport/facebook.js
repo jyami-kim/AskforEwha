@@ -19,13 +19,14 @@ module.exports = function(app, passport){
             if(err) return done(err);
             if(!user){
                 var user = new database.UserModel({
-                    nickname: user.displayName,
+                    nickname: profile.displayName,
                     if(email){
-                        email : user.emails[0].value;
+                        email : profile.emails[0].value;
                     },
                     provider : 'facebook',
-                    facebook : user._json
+                    facebook : profile._json
                 });
+
 
                 user.save(function(err){
                     if(err) console.log(err);
